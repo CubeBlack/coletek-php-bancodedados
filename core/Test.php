@@ -1,7 +1,11 @@
 <?php
 class Test{
+    public $testes_concluidos;
+
     public function all(){
+        $this->testes_concluidos = 0;
         $this->listar_e_executar_testes();
+        echo "\nTotal de {$this->testes_concluidos} conlcuidos";
     }
 
     function executar_teste_por_instancia_e_metodo($instance, $methodName){
@@ -10,6 +14,7 @@ class Test{
         $instance->$methodName(); 
         
         echo "--\n";
+        $this->testes_concluidos++;
     }
     
     function executar_teste_por_nome_da_classe(string $test_class_name){
