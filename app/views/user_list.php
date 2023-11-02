@@ -2,7 +2,7 @@
   'title' => 'Lista de usuarios'
 ]); ?>
 
-<div class="container">
+<div class="container page">
   <h2>Lista de usuarios</h2>
   <div>
     

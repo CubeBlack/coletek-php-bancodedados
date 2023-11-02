@@ -13,7 +13,11 @@
             justify-content: center;
             align-items: center;
             min-width: 100vw;
-            min-height: calc(100vh - 100px);
+            
+        }
+
+        .page{
+            min-height: calc(100vh - 200px);
         }
     </style>
 </head>

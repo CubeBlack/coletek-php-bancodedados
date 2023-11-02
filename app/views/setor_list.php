@@ -2,7 +2,7 @@
   'title' => 'Lista de setores'
 ]); ?>
 
-<div class="container">
+<div class="container page">
   <h2>Lista de setores</h2>
   <div>
     

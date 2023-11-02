@@ -6,8 +6,8 @@ View::show('master_header', [
 
 ?>
 
-<div class="container-centralizar">
-    <form class="card" style="" method="POST">
+<div class="container-centralizar page">
+    <form class="card" method="POST">
         <div class="card-body">
             <h5 class="card-title"><?php echo $data['title'] ?></h5>
 

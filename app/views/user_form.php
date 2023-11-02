@@ -20,7 +20,7 @@ View::show('master_header', [
 
 <div>
 
-    <form class="container" method="POST" action="<?php echo $action ?>">
+    <form class="container page" method="POST" action="<?php echo $action ?>">
         <h2><?php echo $title ?></h2>
         <div><?php echo $data['msg'] ?></div>
 
