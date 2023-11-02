@@ -1,4 +1,5 @@
 <?php
+include_once "app/config.php";
 include_once "autoload.php";
 
 $document_root = $_SERVER['DOCUMENT_ROOT'];

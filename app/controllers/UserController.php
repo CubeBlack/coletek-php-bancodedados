@@ -1,7 +1,8 @@
 <?php
 class UserController{
     public function index(){
-        echo "UserController()";
+        $users = UserModel::getAll();
+        View::show('user_list', $users);
     }
 
 }
