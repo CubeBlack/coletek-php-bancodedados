@@ -2,12 +2,16 @@
 final class UserModelTest{
     public function getAll(){
         $lista = UserModel::getAll();
-        print_r($lista);
+        echo "Retorno contem " . count($lista) . " itens.\n";
     }
+
+   
 
     public function get(){
         print_r(UserModel::get(1));
     }
+
+     
 
     public function update(){
         $user = UserModel::get(1);
@@ -31,7 +35,7 @@ final class UserModelTest{
         }
     }
 
-
+    
     public function create(){
         $new_user_name = Fake::makeName();
         $new_user_email = Fake::makeEmail();
@@ -51,4 +55,6 @@ final class UserModelTest{
             trigger_error("'Email' diferente do esperado!", E_USER_ERROR);
         }
     }
+
+    
 }

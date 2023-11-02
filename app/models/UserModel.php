@@ -9,6 +9,7 @@ class UserModel extends Model{
 
     static function get($id){
         $conn = Model::getConexao();
+
         $sth = $conn->prepare("SELECT * from users 
             where id = :id");
         $sth->execute(['id'=>$id]);
@@ -30,13 +31,14 @@ class UserModel extends Model{
 
     static function getAll($filter=[]){
         $conn = Model::getConexao();
+
         $sth = $conn->prepare("select * from users");
         $sth->execute();
         return $sth->fetchAll();
     }
 
     public function update(){
-        $conn = Model::getConexao();
+        $conn = $this->getConexao();
         
         $sth = $conn->prepare("UPDATE `users` SET 
                 `name` = :name , 
@@ -68,6 +70,6 @@ class UserModel extends Model{
     }
 
     public function delete(){
-
+        $conn = $this->database->getConexao();
     }
 }

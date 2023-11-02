@@ -5,7 +5,7 @@ class Test{
     public function all(){
         $this->testes_concluidos = 0;
         $this->listar_e_executar_testes();
-        echo "\nTotal de {$this->testes_concluidos} conlcuidos";
+        echo "\nTotal de {$this->testes_concluidos} concluidos";
     }
 
     function executar_teste_por_instancia_e_metodo($instance, $methodName){

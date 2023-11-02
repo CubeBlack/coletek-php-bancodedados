@@ -1,11 +1,13 @@
 <?php
 
 class Database{
-    static protected $conn;
+    protected $conn;
 
     public function getConexao(){
-        if(Database::conn){
-            return Database::conn;
+        if(isset($this->conn)){
+            if($this->conn){
+                return $this->conn;
+            }
         }
 
         try {
@@ -18,5 +20,7 @@ class Database{
         } catch (PDOException $e) {
             die("Erro na conexão com o banco de dados: " . $e->getMessage());
         }
+
+        return $this->conn;
     }
 }
