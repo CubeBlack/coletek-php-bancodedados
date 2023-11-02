@@ -20,7 +20,7 @@ final class App
 
     function call_controler_method_by_rout($rout){
         $instance = new $rout['class'];
-        $instance->{$rout['metodo']}();
+        $instance->{$rout['metodo']}($rout['values']);
     } 
 
     public function show(){
@@ -39,17 +39,18 @@ final class App
                 continue;
             }
 
-            if (!preg_match($rout['pattern'], $url_relativa)) {
+            if (!preg_match($rout['pattern'], $url_relativa, $matches)) {
                 continue;
             } 
 
-            
+            $rout['values'] = $matches;
             return $rout;
         }
 
         return [
             'class'=>'AppController', 
-            'metodo'=>'get404'
+            'metodo'=>'get404',
+            'values'=>[0=>$url_relativa]
         ];
     }
 

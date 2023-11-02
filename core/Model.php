@@ -1,7 +1,7 @@
 <?php
 class Model{
     protected $database;
-  
+    public $message = '';
     
     public function __construct() {
         $this->database = new Database();

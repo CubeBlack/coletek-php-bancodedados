@@ -1,10 +1,11 @@
 <?php
 class UserModel extends Model{
+    public $id = 0;
+    public $name='';
+    public $email='';
 
     public function __construct() {
-        $this->id = 0;
-        $this->name='';
-        $this->email='';
+
     }
 
     static function get($id){
@@ -24,8 +25,8 @@ class UserModel extends Model{
         $user->id = $user_data[0]['id']; 
         $user->name = $user_data[0]['name'];
         $user->email = $user_data[0]['email'];
-        
-        
+        $user->message = '';
+
         return $user;
     }
 
@@ -34,6 +35,7 @@ class UserModel extends Model{
 
         $sth = $conn->prepare("select * from users");
         $sth->execute();
+
         return $sth->fetchAll();
     }
 
@@ -51,7 +53,8 @@ class UserModel extends Model{
             'email'=>$this->email
         ]);
 
-        return $sth->fetchAll();
+        $this->message = 'User atualizado com sucesso.';
+        return $this;
     }
 
     static function create($name, $email){
@@ -82,5 +85,7 @@ class UserModel extends Model{
         $sth->execute([
             'id'=>$this->id
         ]);
+
+        $this->message = 'User apagado com sucesso.';
     }
 }

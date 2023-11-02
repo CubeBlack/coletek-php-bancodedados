@@ -2,7 +2,7 @@
   'title' => 'Lista de usuarios'
 ]); ?>
 
-<div>
+<div class="container">
   <h2>Lista de usuarios</h2>
   <div>
     
@@ -25,8 +25,8 @@
           <td><?php echo $user['name'] ?></td>
           <td><?php echo $user['email'] ?></td>
           <td>
-            <a href="<?php echo $app->make_url('usuarios/' . $user['id']); ?>">Editar</a>
-            <a href="<?php echo $app->make_url('usuarios/' . $user['id'] . '/delete'); ?>">Apagar</a>
+            <a class="btn btn-primary" href="<?php echo $app->make_url('users/' . $user['id']); ?>">Editar</a>
+            <a class="btn btn-danger" href="<?php echo $app->make_url('users/' . $user['id'] . '/delete'); ?>">Apagar</a>
           </td>
         </tr>
       <?php endforeach; ?>
