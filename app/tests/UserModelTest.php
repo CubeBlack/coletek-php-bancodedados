@@ -1,19 +1,30 @@
 <?php
 final class UserModelTest{
     public function getAll(){
+        UserModel::createFake();
+        UserModel::createFake();
+
         $lista = UserModel::getAll();
+        
+        if(count($lista)!=2){
+            trigger_error("Era esperado 2 registros", E_USER_ERROR);
+        }
+        
         echo "Retorno contem " . count($lista) . " itens.\n";
     }
 
    
 
     public function get(){
+        UserModel::createFake();
         print_r(UserModel::get(1));
     }
 
      
 
     public function update(){
+        UserModel::createFake();
+        
         $user = UserModel::get(1);
 
         $old_name = $user->name;
@@ -56,5 +67,20 @@ final class UserModelTest{
         }
     }
 
-    
+    public function apagar_user(){
+        UserModel::createFake();
+        UserModel::createFake();
+
+        $setor = UserModel::get(1);
+
+        $setor->delete();
+
+        $lista = UserModel::getAll();
+        
+        if(count($lista) > 1){
+            trigger_error("User não apagado");
+        }
+
+        echo "User apagado\n";
+    }
 }

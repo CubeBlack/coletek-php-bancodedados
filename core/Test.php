@@ -1,6 +1,9 @@
 <?php
 class Test{
     public $testes_concluidos;
+    public function __construct(Type $var = null) {
+        $this->database = new Database();
+    }
 
     public function all(){
         $this->testes_concluidos = 0;
@@ -9,6 +12,9 @@ class Test{
     }
 
     function executar_teste_por_instancia_e_metodo($instance, $methodName){
+        
+        $this->database->refresh();
+
         echo "{$methodName}()\n";
     
         $instance->$methodName(); 

@@ -40,6 +40,7 @@ class Cli{
 
         if(!isset($this->argumentos[2])){
             $testes->all();
+            return;
         }
         
         $testes->executar_teste_por_nome_da_classe($this->argumentos[2]);

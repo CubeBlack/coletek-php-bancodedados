@@ -63,7 +63,18 @@ class SetorModel extends Model{
         return SetorModel::get($conn->lastInsertId());
     }
 
+    static function createFake(){
+        return SetorModel::create(Fake::makeString());
+    }
+
     public function delete(){
-        $conn = $this->database->getConexao();
+        $conn = $this->getConexao();
+        
+        $sth = $conn->prepare("DELETE FROM `setores`  
+            WHERE `id` = :id");
+
+        $sth->execute([
+            'id'=>$this->id
+        ]);
     }
 }

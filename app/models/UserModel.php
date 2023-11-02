@@ -69,7 +69,18 @@ class UserModel extends Model{
         return UserModel::get($conn->lastInsertId());
     }
 
+    static function createFake(){
+        return UserModel::create(Fake::makeName(), Fake::makeEmail());
+    }
+
     public function delete(){
-        $conn = $this->database->getConexao();
+        $conn = $this->getConexao();
+        
+        $sth = $conn->prepare("DELETE FROM `users`  
+            WHERE `id` = :id");
+
+        $sth->execute([
+            'id'=>$this->id
+        ]);
     }
 }

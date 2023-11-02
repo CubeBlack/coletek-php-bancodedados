@@ -23,4 +23,69 @@ class Database{
 
         return $this->conn;
     }
+
+    function create_table_users(){
+        $sth = $this->conn->prepare("CREATE TABLE IF NOT EXISTS`users` (
+            `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            `name` varchar(100) NOT NULL,
+            `email` varchar(100) NOT NULL
+          )
+        ");
+
+        $sth->execute();
+    }
+
+    function create_table_setores(){
+        $sth = $this->conn->prepare("CREATE TABLE IF NOT EXISTS `setores` (
+            `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            `name` varchar(50) NOT NULL
+          ) 
+        ");
+
+        $sth->execute();
+    }
+
+    function create_table_user_setores(){
+        $sth = $this->conn->prepare("CREATE TABLE IF NOT EXISTS `user_setores` (
+            `setor_id` int(11) NOT NULL,
+            `user_id` int(11) NOT NULL
+          ) 
+        ");
+
+        $sth->execute();
+    }
+
+    function up(){
+        $this->getConexao();
+        $this->create_table_users();
+        $this->create_table_setores();
+        $this->create_table_user_setores();
+    }
+
+    function drop_table_users(){
+        $sth = $this->conn->prepare("DROP TABLE IF EXISTS `users`");
+        $sth->execute();
+    }
+
+    function drop_table_setores(){
+        $sth = $this->conn->prepare("DROP TABLE IF EXISTS `setores`");
+        $sth->execute();
+    }
+
+    function drop_table_user_setores(){
+        $sth = $this->conn->prepare("DROP TABLE IF EXISTS `user_setores`");
+        $sth->execute();
+    }
+
+    function down(){
+        $this->getConexao();
+        $this->drop_table_users();
+        $this->drop_table_setores();
+        $this->drop_table_user_setores();
+    }
+
+    public function refresh(){
+        $this->down();
+        $this->up();
+    }
 }
