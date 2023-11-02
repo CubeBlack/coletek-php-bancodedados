@@ -52,12 +52,13 @@ class UserController{
     }
 
     public function delete($values){
-       
+       global $app;
         $user = UserModel::get($values[1]);
         
         View::show('operacao_form', [
             'title'=>"Excluir User {$user->id} - {$user->name}",
-            'msg'=>'Deseja realmente excluir o usuario?'
+            'msg'=>'Deseja realmente excluir o usuario?',
+            'return_url'=>$app->make_url('users')
         ]);
     }
 

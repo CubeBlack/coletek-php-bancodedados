@@ -20,7 +20,13 @@ function definir_rotas(){
     $app->set_rout('/^users\/add/', 'POST', 'UserController', 'add_submit');
     $app->set_rout('/^users/', 'GET', 'UserController', 'index');
     
-    $app->set_rout('/^setores/', 'GET', 'UserController', 'index');
+    $app->set_rout('/setores\/(\d+)\/delete/', 'GET', 'SetorController', 'delete');
+    $app->set_rout('/setores\/(\d+)\/delete/', 'POST', 'SetorController', 'delete_submit');
+    $app->set_rout('/setores\/(\d+)/', 'GET', 'SetorController', 'show');
+    $app->set_rout('/^setores\/(\d+)/', 'POST', 'SetorController', 'show_submit');
+    $app->set_rout('/^setores\/add/', 'GET', 'SetorController', 'add');
+    $app->set_rout('/^setores\/add/', 'POST', 'SetorController', 'add_submit');
+    $app->set_rout('/^setores/', 'GET', 'SetorController', 'index');
     
     $app->set_rout('/^$/', 'GET', 'UserController', 'index');
 }

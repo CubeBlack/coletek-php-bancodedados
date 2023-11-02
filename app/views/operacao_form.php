@@ -14,7 +14,7 @@ View::show('master_header', [
             <p class="card-text"><?php echo $data['msg'] ?></p>
             
             <button type="submit" class="btn btn-danger" href="#" class="card-link">Sim, excluir</button>
-            <a class="btn btn-primary" href="#" class="card-link">Não, apenas voltar</a>
+            <a class="btn btn-primary" href="<?php echo $data['return_url'] ?>" class="card-link">Não, apenas voltar</a>
         </div>
     </form>
 
