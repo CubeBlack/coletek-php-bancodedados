@@ -36,7 +36,7 @@ final class App
 
         foreach ($this->routes as $indice => $rout) {
              if($rout['verbo'] != $verbo){
-                return;
+                continue;
             }
 
             if (!preg_match($rout['pattern'], $url_relativa)) {

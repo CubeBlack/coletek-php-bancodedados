@@ -13,7 +13,9 @@ $app = new App($relative_path_sys);
 
 $app->set_rout('/^usuarios\/\d+\/delete$/', 'GET', 'UserController', 'delete');
 $app->set_rout('/^usuarios\/\d+/', 'GET', 'UserController', 'show');
+$app->set_rout('/^usuarios\/\d+/', 'POST', 'UserController', 'show_submit');
 $app->set_rout('/^usuarios\/add/', 'GET', 'UserController', 'add');
+$app->set_rout('/^usuarios\/add/', 'POST', 'UserController', 'add_submit');
 $app->set_rout('/^usuarios/', 'GET', 'UserController', 'index');
 
 $app->set_rout('setores', 'GET', 'UserController', 'index');
