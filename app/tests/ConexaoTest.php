@@ -1,5 +1,5 @@
 <?php
-class ConexaoTest //extends AnotherClass implements Interface
+class ConexaoTest
 {
     public function conectar(){
         $conexao = new Conexao(DATABASE_DB_HOST, DATABASE_DB_NAME, DATABASE_DB_USER, DATABASE_DB_PASS );

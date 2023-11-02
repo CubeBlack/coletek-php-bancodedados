@@ -1,11 +1,7 @@
 <?php
 final class UserModelTest{
-    
-    public function create(){
-
-    }
-
-    public function save(){
-
+    public function getAll(){
+        $lista = UserModel::getAll();
+        var_dump($lista);
     }
 }

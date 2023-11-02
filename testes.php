@@ -7,9 +7,8 @@ echo "Sistema basico de testes unitarios\n\n";
 function executar_teste_por_instancia_e_metodo($instance, $methodName){
     echo "{$methodName}()\n";
 
-    $result = $instance->$methodName(); 
+    $instance->$methodName(); 
     
-    echo "Result = {$result}\n";
     echo "--\n";
 }
 
