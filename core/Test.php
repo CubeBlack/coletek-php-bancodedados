@@ -17,13 +17,18 @@ class Test{
         $this->testes_concluidos++;
     }
     
-    function executar_teste_por_nome_da_classe(string $test_class_name){
+    public function executar_teste_por_nome_da_classe(string $test_class_name){
         
         $test_file = "app/tests/${test_class_name}.php";
             
         echo "Executar: ${test_file}\n";
         
+        if(!file_exists($test_file)){
+            trigger_error("arquivo '{$test_file}' não encontrado");
+        }
+        
         include_once "app/tests/${test_class_name}.php";
+        
         $instance = new $test_class_name();
     
         $reflectionClass = new ReflectionClass($instance);

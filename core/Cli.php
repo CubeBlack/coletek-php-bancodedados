@@ -1,16 +1,19 @@
 <?php
 class Cli{
+    protected $argumentos;
     public function __construct($argumentos) {
-        if($argumentos < 2){
+        $this->argumentos = $argumentos;
+
+        if($this->argumentos < 2){
             $this->show_help();
             return;
         }
 
-        $this->verificar_argumento($argumentos[1]);
+        $this->verificar_argumento();
     }
 
-    public function verificar_argumento($argumento){
-        switch ($argumento) {
+    public function verificar_argumento(){
+        switch ($this->argumentos[1]) {
             case 'test':
                 $this->executar_testes();
                 break;
@@ -34,7 +37,12 @@ class Cli{
 
     public function executar_testes(){
         $testes = new Test();
-        $testes->all();
+
+        if(!isset($this->argumentos[2])){
+            $testes->all();
+        }
+        
+        $testes->executar_teste_por_nome_da_classe($this->argumentos[2]);
     }
 
     public function criar_banco_de_dados(){
