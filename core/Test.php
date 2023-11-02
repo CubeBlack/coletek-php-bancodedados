@@ -25,6 +25,7 @@ class Test{
         
         if(!file_exists($test_file)){
             trigger_error("arquivo '{$test_file}' não encontrado");
+            return;
         }
         
         include_once "app/tests/${test_class_name}.php";

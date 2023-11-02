@@ -4,7 +4,6 @@ class SetorModel extends Model{
     public function __construct() {
         $this->id = 0;
         $this->name='';
-        $this->email='';
     }
 
     static function get($id){
@@ -23,7 +22,6 @@ class SetorModel extends Model{
         
         $user->id = $user_data[0]['id']; 
         $user->name = $user_data[0]['name'];
-        $user->email = $user_data[0]['email'];
         
         
         return $user;
@@ -40,30 +38,26 @@ class SetorModel extends Model{
     public function update(){
         $conn = $this->getConexao();
         
-        $sth = $conn->prepare("UPDATE `userses` SET 
-                `name` = :name , 
-                `email` = :email 
-            WHERE `users`.`id` = :id");
+        $sth = $conn->prepare("UPDATE `setores` SET 
+                `name` = :name 
+            WHERE `setores`.`id` = :id");
 
         $sth->execute([
             'id'=>$this->id,
-            'name'=>$this->name,
-            'email'=>$this->email
+            'name'=>$this->name
         ]);
 
         return $sth->fetchAll();
     }
 
-    static function create($name, $email){
+    static function create($name){
         $conn = Model::getConexao();
         
-        $sth = $conn->prepare("INSERT `userses` SET 
-            `name` = :name , 
-            `email` = :email ");
+        $sth = $conn->prepare("INSERT `setores` SET 
+            `name` = :name ");
 
         $sth->execute([
-            'name'=>$name,
-            'email'=>$email
+            'name'=>$name
         ]);
 
         return SetorModel::get($conn->lastInsertId());

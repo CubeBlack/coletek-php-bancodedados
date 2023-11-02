@@ -5,56 +5,51 @@ final class SetorModelTest{
         echo "Retorno contem " . count($lista) . " itens.\n";
     }
 
-   /*
+   
 
-    public function get(){
-        print_r(UserModel::get(1));
+    public function retornar_um_setor(){
+        $setor = SetorModel::get(1);
+        print_r($setor);
+        if(!$setor){
+            trigger_error("Setor não encontrado\n");
+        } 
     }
+   
 
-     
+    public function atualizar_setor(){
+        $setor = SetorModel::get(1);
 
-    public function update(){
-        $user = UserModel::get(1);
+        $old_name = $setor->name;
 
-        $old_name = $user->name;
-        $old_email = $user->email;
 
-        $user->name = Fake::makeName();
-        $user->email = Fake::makeEmail();
+        $setor->name = Fake::makeString();
 
-        $user->update();
 
-        $user = UserModel::get(1);
+        $setor->update();
 
-        if($user->name == $old_name){
-            trigger_error("Name não atualizado!", E_USER_ERROR);
+        $setor = SetorModel::get(1);
+
+        if($setor->name == $old_name){
+            trigger_error("'Name' não atualizado!", E_USER_ERROR);
         }
 
-        if($user->email == $old_email){
-            trigger_error("Email não atualizado!", E_USER_ERROR);
-        }
     }
 
     
-    public function create(){
-        $new_user_name = Fake::makeName();
-        $new_user_email = Fake::makeEmail();
+    public function criar_novo_setor(){
+        $new_name = Fake::makeString();
 
-        $user = UserModel::create($new_user_name, $new_user_email);
+        $setor = SetorModel::create($new_name);
                 
-        $user = UserModel::get($user->id);
+        $setor = SetorModel::get($setor->id);
         
 
-        if($user->name != $new_user_name){
-            var_dump($user->name);
-            var_dump($new_user_name);
+        if($setor->name != $new_name){
+            var_dump($setor->name);
+            var_dump($new_name);
             trigger_error("'Name' do usuario diferente do esperado", E_USER_ERROR);
         }
 
-        if($user->email != $new_user_email){
-            trigger_error("'Email' diferente do esperado!", E_USER_ERROR);
-        }
     }
-
-    */
+ 
 }

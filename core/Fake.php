@@ -21,4 +21,15 @@ class Fake{
     
         return "{$randomFirstName}{$randomLastName}@{$host}";
     }
+
+    static function makeString($tamanho = 8){
+        $caracteres = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'; // Caracteres permitidos
+        $stringAleatoria = '';
+    
+         for ($i = 0; $i < $tamanho; $i++) {
+            $stringAleatoria .= $caracteres[rand(0, strlen($caracteres) - 1)];
+        }
+    
+        return $stringAleatoria;
+    }
 }
