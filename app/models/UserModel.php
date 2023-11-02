@@ -8,10 +8,10 @@ class UserModel extends Model{
     }
 
     static function get($id){
-
         $conn = Model::getConexao();
-        $sth = $conn->prepare("select * from users");
-        $sth->execute();
+        $sth = $conn->prepare("SELECT * from users 
+            where id = :id");
+        $sth->execute(['id'=>$id]);
         $user_data = $sth->fetchAll();
 
         if(empty($user_data)){
@@ -52,8 +52,19 @@ class UserModel extends Model{
         return $sth->fetchAll();
     }
 
-    public function create(){
+    static function create($name, $email){
+        $conn = Model::getConexao();
+        
+        $sth = $conn->prepare("INSERT `users` SET 
+            `name` = :name , 
+            `email` = :email ");
 
+        $sth->execute([
+            'name'=>$name,
+            'email'=>$email
+        ]);
+
+        return UserModel::get($conn->lastInsertId());
     }
 
     public function delete(){

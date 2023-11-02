@@ -1,9 +1,12 @@
 <?php
 class Model{
-    public $conexao;
+    static $conexao;
     
     public function __construct() {
-        $this->conexao =  Model::getConexao();
+        if(!$this->conexao){
+            $this->conexao =  Model::getConexao();
+        }
+
     }
 
     static function getConexao(){
