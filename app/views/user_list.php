@@ -1,4 +1,6 @@
-<?php View::show('master_header'); ?>
+<?php View::show('master_header',[
+    'title'=>'Lista de usuarios'
+]); ?>
 
 <div>
     <h2>Lista de usuarios</h2>

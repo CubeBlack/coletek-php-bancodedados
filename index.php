@@ -11,5 +11,9 @@ $relative_path_sys = str_replace('index.php', '', $current_file_path);
 $app = new App($relative_path_sys);
 
 $app->set_rout('', 'GET', 'UserController', 'index');
+$app->set_rout('usuarios', 'GET', 'UserController', 'index');
+$app->set_rout('usuarios/$id', 'GET', 'UserController', 'index');
+$app->set_rout('usuarios/add', 'GET', 'UserController', 'add');
+$app->set_rout('setores', 'GET', 'UserController', 'index');
 
 $app->show();

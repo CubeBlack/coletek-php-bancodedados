@@ -44,4 +44,8 @@ final class App
 
         $this->call_controler_method_by_rout($this->routes[$rout_key]);
     }
+
+    function make_url($relativo){
+        return "{$this->url_base}$relativo";
+    }
 }
