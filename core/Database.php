@@ -88,4 +88,5 @@ class Database{
         $this->down();
         $this->up();
     }
+
 }

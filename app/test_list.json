@@ -1,5 +1,6 @@
 [
     "DatabaseTest",
     "UserModelTest",
-    "SetorModelTest"
+    "SetorModelTest",
+    "UserSetorModelTest"
 ]
