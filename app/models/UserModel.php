@@ -3,6 +3,7 @@ class UserModel extends Model{
     public $id = 0;
     public $name='';
     public $email='';
+    public $setores='';
 
     public function __construct() {
 
@@ -11,8 +12,14 @@ class UserModel extends Model{
     static function get($id){
         $conn = Model::getConexao();
 
-        $sth = $conn->prepare("SELECT * from users 
-            where id = :id");
+        $sth = $conn->prepare("SELECT 
+                users.*, 
+                GROUP_CONCAT(setores.name SEPARATOR ', ') as setores
+            from users
+            left join user_setores on user_setores.user_id = users.id
+            left join setores on setores.id = user_setores.setor_id
+            where users.id = :id
+            group by users.id");
         $sth->execute(['id'=>$id]);
         $user_data = $sth->fetchAll();
 
@@ -25,15 +32,56 @@ class UserModel extends Model{
         $user->id = $user_data[0]['id']; 
         $user->name = $user_data[0]['name'];
         $user->email = $user_data[0]['email'];
+        $user->setores = $user_data[0]['setores'];
         $user->message = '';
 
         return $user;
     }
 
-    static function getAll($filter=[]){
+    static function getWhere($pesquisa='', $setor=''){
         $conn = Model::getConexao();
 
-        $sth = $conn->prepare("select * from users");
+        $filtro = "\n where true \n";
+        $parametros = [];
+        $vinculo_adicional = '';
+
+        if($pesquisa != ''){
+            $filtro .= " AND users.name LIKE :name ";
+            $parametros['name'] = "%$pesquisa%";
+        }
+
+        if($setor != ''){
+            $vinculo_adicional .= " inner join setores sa on setores.id = :setor \n";
+            $parametros['setor'] = $setor;
+        }
+
+        $sth = $conn->prepare("SELECT 
+                users.*, 
+                GROUP_CONCAT(setores.name SEPARATOR ', ') as setores
+            from users
+            left join user_setores on user_setores.user_id = users.id
+            left join setores on setores.id = user_setores.setor_id
+            $vinculo_adicional
+            $filtro
+            group by users.id
+        ");
+        
+        $sth->execute($parametros);
+
+        return $sth->fetchAll();
+    }
+
+    static function getAll(){
+        $conn = Model::getConexao();
+
+        $sth = $conn->prepare("SELECT 
+                users.*, 
+                GROUP_CONCAT(setores.name SEPARATOR ', ') as setores
+            from users
+            left join user_setores on user_setores.user_id = users.id
+            left join setores on setores.id = user_setores.setor_id
+            group by users.id
+        ");
         $sth->execute();
 
         return $sth->fetchAll();

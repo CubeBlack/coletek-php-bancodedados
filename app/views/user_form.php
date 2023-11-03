@@ -18,28 +18,41 @@ View::show('master_header', [
 
 ?>
 
-<div>
+<div class="container page">
+    <h2><?php echo $title ?></h2>
+    <form class="card mb-2" method="POST" action="<?php echo $action ?>">
+        <div class="card-body">
+            <h3>Dados pessoas</h3>
+            <div><?php echo $data['msg'] ?></div>
 
-    <form class="container page" method="POST" action="<?php echo $action ?>">
-        <h2><?php echo $title ?></h2>
-        <div><?php echo $data['msg'] ?></div>
+            <div class="form-group ">
+                <label for="name">Name</label>
+                <input type="name" class="form-control" id="name" placeholder="Name" name="name" value="<?php echo $name ?>">
+            </div>
 
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="name" class="form-control" id="name" placeholder="Name" name="name" value="<?php echo $name ?>">
-        </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" value="<?php echo $email ?>">
+            </div>
 
-        <div class="form-group">
-            <label for="email">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" value="<?php echo $email ?>">
-        </div>
+            <?php if ($data['user']) : ?>
+                <div class="card my-2">
+                    <div class="card-body">
+                        Setores:
+                        <div>
+                            <?php echo $data['user']->setores ?>
+                        </div>
+                        <a class="btn btn-primary mt-2" href="<?php echo $app->make_url("users/{$data['user']->id}/setores") ?>">Editar setores do usuario</a>
+                    </div>
+                </div>
+            <?php endif ?>
 
+            <button type="submit" class="btn btn-primary mt-2">Submit</button>
 
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Submit</button>
         </div>
 
     </form>
+
 
 </div>
 

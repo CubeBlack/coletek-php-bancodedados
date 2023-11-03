@@ -4,11 +4,10 @@
 
 <div class="container page">
   <h2>Lista de setores</h2>
-  <div>
-    
-  </div>
 
-  <table class="table">
+  <a class="btn btn-primary mb-2" href="<?php echo $app->make_url('setores/add') ?>">Cadastrar Setor</a>
+
+  <table class="table table-bordered">
     <thead>
       <tr>
         <th scope="col">#</th>
