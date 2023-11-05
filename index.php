@@ -12,6 +12,11 @@ function get_lelative_url()
 
 function definir_rotas(){
     global $app;
+    $app->set_rout('/users\/(\d+)\/setores\/(\d+)\/delete/', 'GET', 'UserSetorController', 'delete');
+    $app->set_rout('/users\/(\d+)\/setores\/(\d+)\/delete/', 'POST', 'UserSetorController', 'delete_submit');
+    $app->set_rout('/users\/(\d+)\/setores\/add/', 'GET', 'UserSetorController', 'add');
+    $app->set_rout('/users\/(\d+)\/setores/', 'GET', 'UserSetorController', 'index');
+
     $app->set_rout('/users\/(\d+)\/delete/', 'GET', 'UserController', 'delete');
     $app->set_rout('/users\/(\d+)\/delete/', 'POST', 'UserController', 'delete_submit');
     $app->set_rout('/users\/(\d+)/', 'GET', 'UserController', 'show');
