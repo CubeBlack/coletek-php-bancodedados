@@ -1,7 +1,7 @@
 <?php
 
 if ($data['user']) {
-    $title = "Usuário: {$data['user']->id} - {$data['user']->name}";
+    $title = "Usuário [{$data['user']->id}]{$data['user']->name}";
     $action = $app->make_url("users/{$data['user']->id}/submit");
     $name = $data['user']->name;
     $email = $data['user']->email;
