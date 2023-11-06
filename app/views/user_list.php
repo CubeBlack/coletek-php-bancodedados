@@ -7,7 +7,7 @@
 
   <a class="btn btn-primary" href="<?php echo $app->make_url('users/add') ?>">Cadastrar Usuário</a>
 
-  <form class="card my-2 " action="" method="GET">
+  <form class="card my-2 " action="<?php echo $app->make_url('users') ?>" method="GET">
 
     <div class="my-2 mx-2 row">
       <select name="setor" id="" class="form-select col" style="max-width: 200px;">
