@@ -3,17 +3,17 @@ class UserController
 {
     public function index()
     {
-        $pesquisa = isset($_REQUEST['pesquisa'])?$_REQUEST['pesquisa']:'';
-        $setor = isset($_REQUEST['filtrar_por_setor'])?$_REQUEST['setor']:'';
+        $setor = isset($_REQUEST['setor'])?$_REQUEST['setor']:'';
 
-        $users = UserModel::getWhere($pesquisa, $setor);
-
+        $users = UserModel::getBySetor($setor);
         $setores = SetorModel::getAll();
+        
         View::show(
             'user_list',
             [
                 'users' => $users,
-                'setores' => $setores
+                'setores' => $setores,
+                'setor' => $setor
             ]
         );
     }
@@ -64,7 +64,7 @@ class UserController
 
         View::show('user_form', [
             'user' => $user,
-            'msg' => $user->message
+            'msg' => UserModel::$message
         ]);
     }
 

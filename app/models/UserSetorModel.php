@@ -5,7 +5,6 @@ class UserSetorModel extends Model{
     public $setor_name = '';
     public $user_name = '';
 
-
     public function __construct() {
 
     }
@@ -84,6 +83,12 @@ class UserSetorModel extends Model{
     static function create($user_id, $setor_id){
         $conn = Model::getConexao();
         
+        $user_setor = UserSetorModel::get($user_id, $setor_id);
+        if($user_setor){
+            UserSetorModel::$message = 'Usuario ja vinculado';
+            return null;
+        }
+
         $sth = $conn->prepare("INSERT `user_setores` SET 
             `user_id` = :user_id , 
             `setor_id` = :setor_id ");

@@ -1,15 +1,15 @@
 
 <?php View::show('master_header', [
-  'title' => '['.$data['user']->id . ']'. $data['user']->name . ', definir setores'
+  'title' => 'Setores de ['.$data['user']->id . ']'. $data['user']->name
 ]); 
 
 ?>
 
 <div class="container page">
-  <h2>Definir setores do usuario [<?php echo $data['user']->id ?>]<?php echo $data['user']->name ?> </h2>
+  <h2>Setores do usuario [<?php echo $data['user']->id ?>]<?php echo $data['user']->name ?> </h2>
 
   <a class="btn btn-primary mb-2" href="<?php echo $app->make_url('setores/add') ?>">Cadastrar novo setor</a>
-  <a class="btn btn-primary mb-2" href="<?php echo $app->make_url('setores/add') ?>">Vincular setor ao usuario</a>
+  <a class="btn btn-primary mb-2" href="<?php echo $app->make_url("users/{$data['user']->id}/setores/add") ?>">Vincular setor ao usuario</a>
 
   <table class="table table-bordered">
     <thead>

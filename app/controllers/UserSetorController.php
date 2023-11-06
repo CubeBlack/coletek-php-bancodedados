@@ -47,5 +47,33 @@ class UserSetorController
         header("location: {$app->make_url("users/{$user_id}/setores")}");
     }
 
+    public function add($values)
+    {
+        $user_id = $values[1];
+        $setores = SetorModel::getUserNotAsigneds($user_id);
+        $user = UserModel::get($user_id);
+
+        View::show('user_setor_form', [
+            'user' => $user,
+            'setores' => $setores
+        ]);
+    }
+
+    public function add_submit($values)
+    {
+        $user_id = $values[1];
+        $setor_id = isset($_REQUEST['setor_id'])?$_REQUEST['setor_id']:'';
+
+        $novo_setor = UserSetorModel::create($user_id, $setor_id);
+        
+        $setores = SetorModel::getUserNotAsigneds($user_id);
+        $user = UserModel::get($user_id);
+
+
+        View::show('user_setor_form', [
+            'user' => $user,
+            'setores' => $setores
+        ]);
+    }
 
 }

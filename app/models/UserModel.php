@@ -33,40 +33,28 @@ class UserModel extends Model{
         $user->name = $user_data[0]['name'];
         $user->email = $user_data[0]['email'];
         $user->setores = $user_data[0]['setores'];
-        $user->message = '';
+
+        UserModel::$message = '';
 
         return $user;
     }
 
-    static function getWhere($pesquisa='', $setor=''){
+    static function getBySetor($setor=''){
         $conn = Model::getConexao();
 
-        $filtro = "\n where true \n";
-        $parametros = [];
-        $vinculo_adicional = '';
-
-        if($pesquisa != ''){
-            $filtro .= " AND users.name LIKE :name ";
-            $parametros['name'] = "%$pesquisa%";
+        if($setor == ''){
+            return userModel::getAll();
         }
 
-        if($setor != ''){
-            $vinculo_adicional .= " inner join setores sa on setores.id = :setor \n";
-            $parametros['setor'] = $setor;
-        }
-
-        $sth = $conn->prepare("SELECT 
-                users.*, 
-                GROUP_CONCAT(setores.name SEPARATOR ', ') as setores
+        $sth = $conn->prepare("SELECT  * 
             from users
-            left join user_setores on user_setores.user_id = users.id
-            left join setores on setores.id = user_setores.setor_id
-            $vinculo_adicional
-            $filtro
-            group by users.id
+            where EXISTS(
+                select user_id from user_setores
+                where user_setores.setor_id = :setor_id
+                )
         ");
         
-        $sth->execute($parametros);
+        $sth->execute(['setor_id'=>$setor]);
 
         return $sth->fetchAll();
     }
@@ -86,6 +74,7 @@ class UserModel extends Model{
 
         return $sth->fetchAll();
     }
+
 
     public function update(){
         $conn = $this->getConexao();

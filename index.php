@@ -15,6 +15,7 @@ function definir_rotas(){
     $app->set_rout('/users\/(\d+)\/setores\/(\d+)\/delete/', 'GET', 'UserSetorController', 'delete');
     $app->set_rout('/users\/(\d+)\/setores\/(\d+)\/delete/', 'POST', 'UserSetorController', 'delete_submit');
     $app->set_rout('/users\/(\d+)\/setores\/add/', 'GET', 'UserSetorController', 'add');
+    $app->set_rout('/users\/(\d+)\/setores\/add/', 'POST', 'UserSetorController', 'add_submit');
     $app->set_rout('/users\/(\d+)\/setores/', 'GET', 'UserSetorController', 'index');
 
     $app->set_rout('/users\/(\d+)\/delete/', 'GET', 'UserController', 'delete');

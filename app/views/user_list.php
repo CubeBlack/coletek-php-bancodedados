@@ -9,19 +9,16 @@
 
   <form class="card my-2 " action="" method="GET">
 
-    <div class="my-2 mx-2">
-      <input class="" type="text" placeholder="Nome do usuario a ser pesquisado" name="pesquisa">
-
-      <select name="setor" id="">
-        <?php foreach ($data['setores'] as $indice => $setor): ?>
+    <div class="my-2 mx-2 row">
+      <select name="setor" id="" class="form-select col" style="max-width: 200px;">
+        <option value="">Todos</option>
+        <?php foreach ($data['setores'] as $indice => $setor) : ?>
           <option value="<?php echo  $setor['id'] ?>"><?php echo  $setor['name'] ?></option>
         <?php endforeach ?>
-        
-      </select>
-      <input type="checkbox" name="filtrar_por_setor" id="filtrar_por_setor">
-      <label for="filtrar_por_setor">Filtrar por setor</label>
 
-      <button class="btn btn-primary" type="submit">Pesquisar</button>
+      </select>
+
+      <button class="btn btn-primary col mx-2" type="submit" style="max-width: 100px;">Filtrar</button>
     </div>
 
   </form>

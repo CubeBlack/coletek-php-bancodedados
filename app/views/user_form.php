@@ -42,6 +42,7 @@ View::show('master_header', [
                         <div>
                             <?php echo $data['user']->setores ?>
                         </div>
+                        
                         <a class="btn btn-primary mt-2" href="<?php echo $app->make_url("users/{$data['user']->id}/setores") ?>">Editar setores do usuario</a>
                     </div>
                 </div>

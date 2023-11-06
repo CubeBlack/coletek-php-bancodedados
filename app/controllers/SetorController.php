@@ -11,7 +11,7 @@ class SetorController
     {
         $msg = 'Insira os valores para editar o registro.';
 
-        $setor = UserModel::get($values[1]);
+        $setor = SetorModel::get($values[1]);
 
         View::show('setor_form', [
             'setor' => $setor,
@@ -22,7 +22,7 @@ class SetorController
     public function show_submit($values)
     {
 
-        $setor = UserModel::get($values[1]);
+        $setor = SetorModel::get($values[1]);
 
         $setor->name = isset($_REQUEST['name']) ? $_REQUEST['name'] : '';
 
@@ -51,7 +51,7 @@ class SetorController
 
         View::show('setor_form', [
             'setor' => $setor,
-            'msg' => $setor->message
+            'msg' => SetorModel::$message
         ]);
     }
 

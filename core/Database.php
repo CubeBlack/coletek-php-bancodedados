@@ -48,7 +48,10 @@ class Database{
     function create_table_user_setores(){
         $sth = $this->conn->prepare("CREATE TABLE IF NOT EXISTS `user_setores` (
             `setor_id` int(11) NOT NULL,
-            `user_id` int(11) NOT NULL
+            `user_id` int(11) NOT NULL,
+            UNIQUE KEY unique_relationship (setor_id, user_id),
+            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+            FOREIGN KEY (setor_id) REFERENCES setores(id) ON DELETE CASCADE
           ) 
         ");
 
@@ -57,9 +60,11 @@ class Database{
 
     function up(){
         $this->getConexao();
+        
         $this->create_table_users();
         $this->create_table_setores();
         $this->create_table_user_setores();
+        
     }
 
     function drop_table_users(){
@@ -79,9 +84,10 @@ class Database{
 
     function down(){
         $this->getConexao();
+        $this->drop_table_user_setores();
         $this->drop_table_users();
         $this->drop_table_setores();
-        $this->drop_table_user_setores();
+        
     }
 
     public function refresh(){

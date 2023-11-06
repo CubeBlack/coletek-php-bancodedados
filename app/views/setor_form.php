@@ -1,7 +1,7 @@
 <?php
 
 if ($data['setor']) {
-    $title = "Setor: {$data['setor']->id} - {$data['setor']->name}";
+    $title = "Setor [{$data['setor']->id}]{$data['setor']->name}";
     $action = $app->make_url("setores/{$data['setor']->id}/submit");
     $name = $data['setor']->name;
 } else {
@@ -24,11 +24,11 @@ View::show('master_header', [
         <div><?php echo $data['msg'] ?></div>
 
         <div class="form-group">
-            <label for="name">Name</label>
+            <label for="name">Name:</label>
             <input type="name" class="form-control" id="name" placeholder="Name" name="name" value="<?php echo $name ?>">
         </div>
 
-        <div class="form-group">
+        <div class="form-group my-2">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
 

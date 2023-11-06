@@ -38,6 +38,24 @@ class SetorModel extends Model{
         return $sth->fetchAll();
     }
 
+    static function getUserNotAsigneds($user_id){
+        $conn = Model::getConexao();
+
+        $sth = $conn->prepare("SELECT * from setores
+            WHERE NOT EXISTS(
+                select setor_id 
+                from user_setores 
+                where user_setores.setor_id = setores.id
+                    and user_id = :user_id 
+            );
+           
+        ");
+        
+        $sth->execute(['user_id'=>$user_id]);
+        
+        return $sth->fetchAll();
+    }
+
     public function update(){
         $conn = $this->getConexao();
         
@@ -50,7 +68,8 @@ class SetorModel extends Model{
             'name'=>$this->name
         ]);
 
-        return $sth->fetchAll();
+        $this->message = 'Setor atualizado com sucesso.';
+        return $this;
     }
 
     static function create($name){
