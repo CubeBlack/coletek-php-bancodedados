@@ -68,7 +68,7 @@ class SetorModel extends Model{
             'name'=>$this->name
         ]);
 
-        $this->message = 'Setor atualizado com sucesso.';
+        SetorModel::$message = 'Setor atualizado com sucesso.';
         return $this;
     }
 

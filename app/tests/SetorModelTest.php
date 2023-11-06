@@ -54,7 +54,7 @@ final class SetorModelTest{
         if($setor->name != $new_name){
             var_dump($setor->name);
             var_dump($new_name);
-            trigger_error("'Name' do usuario diferente do esperado", E_USER_ERROR);
+            trigger_error("'Name' do usuário diferente do esperado", E_USER_ERROR);
         }
 
     }

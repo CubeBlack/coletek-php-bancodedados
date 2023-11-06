@@ -1,11 +1,11 @@
 <?php View::show('master_header', [
-  'title' => 'Lista de usuarios'
+  'title' => 'Lista de usuários'
 ]); ?>
 
 <div class="container page">
-  <h2>Lista de usuarios</h2>
+  <h2>Lista de usuários</h2>
 
-  <a class="btn btn-primary" href="<?php echo $app->make_url('users/add') ?>">Cadastrar Usuario</a>
+  <a class="btn btn-primary" href="<?php echo $app->make_url('users/add') ?>">Cadastrar Usuário</a>
 
   <form class="card my-2 " action="" method="GET">
 
@@ -13,7 +13,10 @@
       <select name="setor" id="" class="form-select col" style="max-width: 200px;">
         <option value="">Todos</option>
         <?php foreach ($data['setores'] as $indice => $setor) : ?>
-          <option value="<?php echo  $setor['id'] ?>"><?php echo  $setor['name'] ?></option>
+          <option value="<?php echo  $setor['id'] ?>" 
+            <?php if($setor['id'] == $data['setor']){ echo 'selected'; } ?>>
+              <?php echo  $setor['name'] ?>
+          </option>
         <?php endforeach ?>
 
       </select>

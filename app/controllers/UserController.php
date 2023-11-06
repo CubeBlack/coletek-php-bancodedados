@@ -42,13 +42,13 @@ class UserController
 
         View::show('user_form', [
             'user' => $user,
-            'msg' => $user->message,
+            'msg' => UserModel::$message,
         ]);
     }
 
     public function add()
     {
-        $msg = 'Insira os valores para registrar novo usuario';
+        $msg = 'Insira os valores para registrar novo usuário';
         View::show('user_form', [
             'user' => null,
             'msg' => $msg,
@@ -74,8 +74,8 @@ class UserController
         $user = UserModel::get($values[1]);
 
         View::show('operacao_form', [
-            'title' => "Excluir User {$user->id} - {$user->name}",
-            'msg' => 'Deseja realmente excluir o usuario?',
+            'title' => "Excluir usuário <b>[{$user->id}]{$user->name}</b>",
+            'msg' => 'Deseja realmente excluir o usuário?',
             'return_url' => $app->make_url('users')
         ]);
     }

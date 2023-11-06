@@ -59,7 +59,7 @@ final class UserModelTest{
         if($user->name != $new_user_name){
             var_dump($user->name);
             var_dump($new_user_name);
-            trigger_error("'Name' do usuario diferente do esperado", E_USER_ERROR);
+            trigger_error("'Name' do usuário diferente do esperado", E_USER_ERROR);
         }
 
         if($user->email != $new_user_email){

@@ -46,12 +46,22 @@ class UserModel extends Model{
             return userModel::getAll();
         }
 
-        $sth = $conn->prepare("SELECT  * 
+
+        $sth = $conn->prepare("SELECT
+                users.*, 
+                GROUP_CONCAT(setores.name SEPARATOR ', ') as setores
+            
             from users
+            
+            left join user_setores on user_setores.user_id = users.id
+            left join setores on setores.id = user_setores.setor_id
+            
             where EXISTS(
-                select user_id from user_setores
+                select user_id from user_setores c
                 where user_setores.setor_id = :setor_id
                 )
+            
+            group by users.id
         ");
         
         $sth->execute(['setor_id'=>$setor]);
@@ -90,7 +100,7 @@ class UserModel extends Model{
             'email'=>$this->email
         ]);
 
-        $this->message = 'User atualizado com sucesso.';
+        UserModel::$message = 'User atualizado com sucesso.';
         return $this;
     }
 

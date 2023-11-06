@@ -1,6 +1,6 @@
 <?php
 View::show('master_header', [
-    'title' => 'Lista de usuarios'
+    'title' => 'Lista de usuários'
 ]);
 
 

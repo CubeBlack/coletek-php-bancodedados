@@ -30,7 +30,7 @@ class SetorController
 
         View::show('setor_form', [
             'setor' => $setor,
-            'msg' => $setor->message,
+            'msg' => SetorModel::$message
         ]);
     }
 

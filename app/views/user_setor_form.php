@@ -7,9 +7,9 @@
 <div class="container page">
   <h2>Vincular setores a [<?php echo $data['user']->id ?>]<?php echo $data['user']->name ?> </h2>
 
-  <a class="btn btn-primary mb-2" href="<?php echo $app->make_url("users/{$data['user']->id}") ?>">Voltar ao usuario</a>
+  <a class="btn btn-primary mb-2" href="<?php echo $app->make_url("users/{$data['user']->id}") ?>">Voltar ao usuário</a>
   <a class="btn btn-primary mb-2" href="<?php echo $app->make_url('setores/add') ?>">Cadastrar novo setor</a>
-  <!--a class="btn btn-primary mb-2" href="<?php echo $app->make_url("users/{$data['user']->id}/setores/add") ?>">Vincular setor ao usuario</a-->
+  
 
   <table class="table table-bordered">
     <thead>

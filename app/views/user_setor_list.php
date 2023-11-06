@@ -6,10 +6,10 @@
 ?>
 
 <div class="container page">
-  <h2>Setores do usuario [<?php echo $data['user']->id ?>]<?php echo $data['user']->name ?> </h2>
+  <h2>Setores do usuário [<?php echo $data['user']->id ?>]<?php echo $data['user']->name ?> </h2>
 
   <a class="btn btn-primary mb-2" href="<?php echo $app->make_url('setores/add') ?>">Cadastrar novo setor</a>
-  <a class="btn btn-primary mb-2" href="<?php echo $app->make_url("users/{$data['user']->id}/setores/add") ?>">Vincular setor ao usuario</a>
+  <a class="btn btn-primary mb-2" href="<?php echo $app->make_url("users/{$data['user']->id}/setores/add") ?>">Vincular setor ao usuário</a>
 
   <table class="table table-bordered">
     <thead>
@@ -26,7 +26,7 @@
           <td><?php echo $setor['setor_id'] ?></td>
           <td><?php echo $setor['setor_name'] ?></td>
           <td>
-            <a class="btn btn-danger" href="<?php echo $app->make_url("users/{$setor['user_id']}/setores/{$setor['setor_id']}/delete") ?> ">Desvincular usuario</a>
+            <a class="btn btn-danger" href="<?php echo $app->make_url("users/{$setor['user_id']}/setores/{$setor['setor_id']}/delete") ?> ">Desvincular usuário</a>
           </td>
         </tr>
       <?php endforeach; ?>

@@ -1,12 +1,12 @@
 <?php
 
 if ($data['user']) {
-    $title = "Usuario: {$data['user']->id} - {$data['user']->name}";
+    $title = "Usuário: {$data['user']->id} - {$data['user']->name}";
     $action = $app->make_url("users/{$data['user']->id}/submit");
     $name = $data['user']->name;
     $email = $data['user']->email;
 } else {
-    $title = 'Adicione novo usuario';
+    $title = 'Adicione novo usuário';
     $action = $app->make_url('users/add_submit');
     $name = '';
     $email = '';
@@ -43,7 +43,7 @@ View::show('master_header', [
                             <?php echo $data['user']->setores ?>
                         </div>
                         
-                        <a class="btn btn-primary mt-2" href="<?php echo $app->make_url("users/{$data['user']->id}/setores") ?>">Editar setores do usuario</a>
+                        <a class="btn btn-primary mt-2" href="<?php echo $app->make_url("users/{$data['user']->id}/setores") ?>">Editar setores do usuário</a>
                     </div>
                 </div>
             <?php endif ?>

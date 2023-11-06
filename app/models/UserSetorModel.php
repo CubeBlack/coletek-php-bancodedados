@@ -85,7 +85,7 @@ class UserSetorModel extends Model{
         
         $user_setor = UserSetorModel::get($user_id, $setor_id);
         if($user_setor){
-            UserSetorModel::$message = 'Usuario ja vinculado';
+            UserSetorModel::$message = 'Usuário ja vinculado';
             return null;
         }
 
@@ -126,6 +126,6 @@ class UserSetorModel extends Model{
             'setor_id'=>$this->setor_id
         ]);
 
-        $this->message = 'Usuario desvinculado do setor';
+        $this->message = 'Usuário desvinculado do setor';
     }
 }
