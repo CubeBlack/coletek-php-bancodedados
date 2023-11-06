@@ -64,7 +64,7 @@ class UserModel extends Model{
                 )
             
             group by users.id
-            order by user.id desc
+            order by users.id desc
         ");
         
         $sth->execute(['setor_id'=>$setor]);
