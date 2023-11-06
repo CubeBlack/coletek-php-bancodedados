@@ -33,7 +33,7 @@ class SetorModel extends Model{
     static function getAll($filter=[]){
         $conn = Model::getConexao();
 
-        $sth = $conn->prepare("select * from setores");
+        $sth = $conn->prepare("select * from setores order by id desc");
         $sth->execute();
         return $sth->fetchAll();
     }
@@ -47,7 +47,9 @@ class SetorModel extends Model{
                 from user_setores 
                 where user_setores.setor_id = setores.id
                     and user_id = :user_id 
-            );
+            )
+            
+            order by id desc
            
         ");
         

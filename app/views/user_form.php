@@ -48,7 +48,7 @@ View::show('master_header', [
                 </div>
             <?php endif ?>
 
-            <button type="submit" class="btn btn-primary mt-2">Submit</button>
+            <button type="submit" class="btn btn-primary mt-2">Salvar</button>
 
         </div>
 

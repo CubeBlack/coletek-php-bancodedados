@@ -19,7 +19,9 @@ class UserModel extends Model{
             left join user_setores on user_setores.user_id = users.id
             left join setores on setores.id = user_setores.setor_id
             where users.id = :id
-            group by users.id");
+            group by users.id
+           
+            ");
         $sth->execute(['id'=>$id]);
         $user_data = $sth->fetchAll();
 
@@ -62,6 +64,7 @@ class UserModel extends Model{
                 )
             
             group by users.id
+            order by user.id desc
         ");
         
         $sth->execute(['setor_id'=>$setor]);
@@ -79,6 +82,7 @@ class UserModel extends Model{
             left join user_setores on user_setores.user_id = users.id
             left join setores on setores.id = user_setores.setor_id
             group by users.id
+            order by users.id desc
         ");
         $sth->execute();
 
